@@ -92,7 +92,7 @@ function App() {
                 </Button>
               </div>
               {error && <Typography className="error">{error}</Typography>}
-              {uvIndex && (
+              {uvIndex != undefined && (
                 <div>
                   <Typography variant="h2">UV Index:</Typography>
                   <MyArcProgress
