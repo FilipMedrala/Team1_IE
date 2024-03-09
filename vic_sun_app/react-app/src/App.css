@@ -1,0 +1,38 @@
+/* App.css */
+
+body {
+  background-color: #FFFFFF; 
+  color: #FFD580; 
+}
+
+.container {
+  max-width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.paper {
+  height: 100vh; 
+  padding: 20px;
+  width: 80%; 
+  margin: 0 auto;
+  background-color: lightblue; 
+}
+
+.error {
+  color: red;
+}
+
+.input-container {
+  display: flex;
+  margin-bottom: 20px; 
+}
+
+/* Apply styles to both TextField and Button inside the input-container class */
+.input-container .MuiTextField-root,
+.input-container .MuiButton-root {
+  flex: 1;
+  margin-right: 10px;
+  background-color: #FFD580; 
+  color: black; 
+}
