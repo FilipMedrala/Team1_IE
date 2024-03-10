@@ -1,3 +1,4 @@
+// App.jsx
 import { useState } from 'react';
 import axios from 'axios';
 import {
@@ -16,7 +17,7 @@ import {
 } from '@mui/material';
 import MyArcProgress from './Arc';
 import Info from './Info';
-import './App.css'; // Import the CSS file
+import './App.css'; // Make sure to include the CSS file
 
 interface WeatherData {
   current?: {
@@ -28,7 +29,7 @@ interface WeatherData {
   };
 }
 
-function App() {
+function Home() {
   const [location, setLatitude] = useState<string>('');
   const [weatherData, setWeatherData] = useState<WeatherData>({});
   const [error, setError] = useState<string | null>(null);
@@ -57,10 +58,50 @@ function App() {
   const sunset = weatherData?.current?.sunset;
 
   return (
+    <div>
+      <div className="input-container">
+        <TextField
+          label="Search"
+          variant="outlined"
+          value={location}
+          onChange={(e) => setLatitude(e.target.value)}
+          placeholder="City, Postcode"
+          className="MuiTextField-root"
+        />
+        <Button
+          variant="contained"
+          onClick={handleFetchData}
+          className="MuiButton-root"
+        >
+          Fetch Weather
+        </Button>
+      </div>
+      {error && <Typography className="error">{error}</Typography>}
+      {uvIndex !== undefined && (
+        <div>
+          <Typography variant="h2">UV Index:</Typography>
+          <MyArcProgress
+            progress={uvIndex / 12}
+            currentText={uvIndex.toFixed(1)}
+          />
+          <Typography>Temperature: {temp}</Typography>
+          <Typography>DT: {dt}</Typography>
+          <Typography>Sunrise: {sunrise}</Typography>
+          <Typography>Sunset: {sunset}</Typography>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function App() {
+  return (
     <Router>
       <Container className="container">
-        <Paper elevation={3} className="paper">
-          <Typography variant="h1">Weather Data</Typography>
+        <Paper elevation={3} className="paper" sx={{ backgroundColor: 'lightblue' }}>
+          <Typography variant="h1" sx={{ color: 'orange' }}>
+            Weather Data
+          </Typography>
           <nav>
             <ul>
               <li>
@@ -74,38 +115,8 @@ function App() {
 
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <div className="input-container">
-                <TextField
-                  label="Search"
-                  variant="outlined"
-                  value={location}
-                  onChange={(e) => setLatitude(e.target.value)}
-                  placeholder="City, Postcode"
-                  className="MuiTextField-root"
-                />
-                <Button
-                  variant="contained"
-                  onClick={handleFetchData}
-                  className="MuiButton-root"
-                >
-                  Fetch Weather
-                </Button>
-              </div>
-              {error && <Typography className="error">{error}</Typography>}
-              {uvIndex != undefined && (
-                <div>
-                  <Typography variant="h2">UV Index:</Typography>
-                  <MyArcProgress
-                    progress={uvIndex / 12}
-                    currentText={uvIndex.toFixed(1)}
-                  />
-                  <Typography>Temperature: {temp}</Typography>
-                  <Typography>DT: {dt}</Typography>
-                  <Typography>Sunrise: {sunrise}</Typography>
-                  <Typography>Sunset: {sunset}</Typography>
-                </div>
-              )}
               <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/info" element={<Info />} />
               </Routes>
             </Grid>

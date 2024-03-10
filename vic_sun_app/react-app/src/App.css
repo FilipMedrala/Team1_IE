@@ -1,38 +1,44 @@
 /* App.css */
 
-body {
-  background-color: #FFFFFF; 
-  color: #FFD580; 
-}
-
 .container {
-  max-width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.paper {
-  height: 100vh; 
-  padding: 20px;
-  width: 80%; 
-  margin: 0 auto;
-  background-color: lightblue; 
-}
-
-.error {
-  color: red;
-}
-
-.input-container {
-  display: flex;
-  margin-bottom: 20px; 
-}
-
-/* Apply styles to both TextField and Button inside the input-container class */
-.input-container .MuiTextField-root,
-.input-container .MuiButton-root {
-  flex: 1;
-  margin-right: 10px;
-  background-color: #FFD580; 
-  color: black; 
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .paper {
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+  }
+  
+  .MuiTextField-root {
+    width: 100%;
+    margin-bottom: 15px;
+    input {
+      border: 2px solid orange; /* Set border color to orange */
+    }
+  }
+  
+  .MuiButton-root {
+    background-color: orange !important; /* Set button background color to orange */
+    color: white !important; /* Set button text color to white */
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  /* Add other styles as needed */
+  
+  /* Override default link color */
+  a {
+    color: orange;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
