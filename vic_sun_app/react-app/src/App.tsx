@@ -14,6 +14,8 @@ import {
   Button,
   Paper,
   Grid,
+  BottomNavigation,
+  BottomNavigationAction,
 } from '@mui/material';
 import MyArcProgress from './Arc';
 import Info from './Info';
@@ -23,10 +25,21 @@ interface WeatherData {
   current?: {
     temp: number;
     uvi: number;
-    dt: number;
-    sunrise: number;
-    sunset: number;
+    dt?: number;
+    sunrise?: number;
+    sunset?: number;
   };
+}
+
+function formatTime(timestamp?: number): string {
+  if (timestamp === undefined) {
+    return "N/A";
+  }
+
+  const date = new Date(timestamp * 1000);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
 }
 
 function Home() {
@@ -85,9 +98,9 @@ function Home() {
             currentText={uvIndex.toFixed(1)}
           />
           <Typography>Temperature: {temp}</Typography>
-          <Typography>DT: {dt}</Typography>
-          <Typography>Sunrise: {sunrise}</Typography>
-          <Typography>Sunset: {sunset}</Typography>
+          <Typography>DT: {formatTime(dt)}</Typography>
+          <Typography>Sunrise: {formatTime(sunrise)}</Typography>
+          <Typography>Sunset: {formatTime(sunset)}</Typography>
         </div>
       )}
     </div>
@@ -97,22 +110,11 @@ function Home() {
 function App() {
   return (
     <Router>
-      <Container className="container">
-        <Paper elevation={3} className="paper" sx={{ backgroundColor: 'lightblue' }}>
+      <Container className="container" sx={{ width: '60%', margin: 'auto', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Paper elevation={3} className="paper" sx={{ backgroundColor: 'lightblue', minWidth: '100%', flex: '1' }}>
           <Typography variant="h1" sx={{ color: 'orange' }}>
             Weather Data
           </Typography>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/info">Info</Link>
-              </li>
-            </ul>
-          </nav>
-
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Routes>
@@ -122,6 +124,20 @@ function App() {
             </Grid>
           </Grid>
         </Paper>
+
+        <BottomNavigation
+          showLabels
+          sx={{
+            backgroundColor: 'orange',
+            position: 'sticky',
+            bottom: 0,
+            width: '100%',
+            minHeight: '70px',
+          }}
+        >
+          <BottomNavigationAction component={Link} to="/" label="Home" sx={{ color: 'white', width: '50%' }} />
+          <BottomNavigationAction component={Link} to="/info" label="Info" sx={{ color: 'white', width: '50%' }} />
+        </BottomNavigation>
       </Container>
     </Router>
   );
