@@ -58,42 +58,42 @@ During the sun protection times, protect skin and eyes by using covering clothin
       
 
       <div className='row'>
-        <div className='col-2'>
-          <img src={shirt} alt=""  width='80%' className='img-fluid p-3'/>
+        <div className='col-1'>
+        <img src={shirt} alt=""  width='80%' className='img-fluid p-3'/>
         </div>
-        <div className='col-10'>
+        <div className='col-11'>
           <h4 className='text-start'>Slip on clothing</h4>
           <p className='text-start'>Wear loose protective clothing that covers as much skin as possible.</p>
         </div>
 
-        <div className='col-2'>
+        <div className='col-1'>
           <img src={suncream} alt=""  width='80%' className='img-fluid p-3'/>
         </div>
-        <div className='col-10'>
+        <div className='col-11'>
           <h4 className='text-start'>Slop on sunscreen</h4>
           <p className='text-start'>Apply high SPF broad-spectrum, water-resistant sunscreen to any skin not covered by clothing. Reapply regularly.</p>
         </div>
 
-        <div className='col-2'>
+        <div className='col-1'>
           <img src={hat} alt=""  width='80%' className='img-fluid p-3'/>
         </div>
-        <div className='col-10'>
+        <div className='col-11'>
           <h4 className='text-start'>Slap on a hat</h4>
           <p className='text-start'>Look for a hat with a tight weave and broad brim that provides good shade to your face, head, neck and ears.</p>
         </div>
 
-        <div className='col-2'>
+        <div className='col-1'>
           <img src={umbrella} alt=""  width='80%' className='img-fluid p-3'/>
         </div>
-        <div className='col-10'>
+        <div className='col-11'>
           <h4 className='text-start'>Seek shade</h4>
           <p className='text-start'>Use a combination of built and natural shade.</p>
         </div>
 
-        <div className='col-2'>
+        <div className='col-1'>
           <img src={sunglasses} alt=""  width='80%' className='img-fluid p-3'/>
         </div>
-        <div className='col-10'>
+        <div className='col-11'>
           <h4 className='text-start'>Slide on sunglasses</h4>
           <p className='text-start'>Choose a close-fitting, wrap-around style of sunglasses.</p>
         </div>
