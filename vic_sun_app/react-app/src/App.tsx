@@ -4,6 +4,11 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 // import search from './assets/search.png'
 import sun from './assets/sun.png'
+import hat from './assets/hat.png'
+import shirt from './assets/shirt.png'
+import suncream from './assets/suncream.png'
+import sunglasses from './assets/sunglasses.png'
+import umbrella from './assets/umbrella.png'
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,9 +25,10 @@ import {
   // BottomNavigation,
   // BottomNavigationAction,
 } from '@mui/material';
-import MyArcProgress from './Arc';
+//import MyArcProgress from './Arc';
 import {Info} from './Info';
 import './App.css'; // Make sure to include the CSS file
+import ProgressBar from './Progress';
 import Thirdpage from './Third';
 
 interface WeatherData {
@@ -71,10 +77,44 @@ function Home() {
   const uvIndex = weatherData?.current?.uvi;
 
   // const uvIndex =2;
+  
   const temp = weatherData?.current?.temp;
   const dt = weatherData?.current?.dt;
   const sunrise = weatherData?.current?.sunrise;
   const sunset = weatherData?.current?.sunset;
+
+  //const colors=['#9af5b2','#feec98','#ffd799','#ffaead','#d4adfe']
+  //const words=['LOW','Moderate','High',' Very High','Extreme']
+
+  const getuvIndex = (uvIndex:any)=>{
+
+    if(uvIndex>=1&&uvIndex<3){
+      return (<span><span  style={{color: '#9af5b2'}}>LOW</span> | <span style={{color: '#9af5b2'}}>{uvIndex}</span></span>)
+    }else  if(uvIndex>=3&&uvIndex<6 ){
+      return (<span><span style={{color: '#feec98'}}>Moderate</span> | <span style={{color: '#feec98'}}>{uvIndex}</span></span>)
+    }else  if(uvIndex>=6&&uvIndex<8){
+      return (<span><span style={{color: '#ffd799'}}>High</span> | <span style={{color: '#ffd799'}}>{uvIndex}</span></span>)
+    }else  if(uvIndex>=8&&uvIndex<11){
+      return (<span><span style={{color: '#ffaead'}}>Very High</span> | <span style={{color: '#ffaead'}}>{uvIndex}</span></span>)
+    }else  if(uvIndex>=11){
+      return (<span><span style={{color: '#d4adfe'}}>Extreme</span> | <span style={{color: '#d4adfe'}}>{uvIndex}</span></span>)
+    }
+
+  }
+
+  const getcolor =(uvIndex:any) =>{
+    if(uvIndex>=1&&uvIndex<3){
+      return '#9af5b2'
+    }else  if(uvIndex>=3&&uvIndex<6){
+      return '#feec98'
+    }else  if(uvIndex>=6&&uvIndex<8 ){
+      return '#ffd799'
+    }else  if(uvIndex>=8&&uvIndex<11){
+      return '#ffaead'
+    }else  if(uvIndex>=11){
+      return '#d4adfe'
+    }
+  }
 
   return (
     <div>
@@ -104,16 +144,48 @@ function Home() {
      {error && <Typography className="error">{error}</Typography>}
       {uvIndex !== undefined && (
         <div>
-          <Typography variant="h2">UV Index:</Typography>
-          <MyArcProgress
+            {/* <Typography variant="h2">UV Index:</Typography> */}
+
+            <div className="progressBox">
+              {
+                (getuvIndex(uvIndex))
+              }
+            
+            </div>
+            <div>
+              <ProgressBar value={uvIndex / 12*100} color={getcolor(uvIndex)} />
+            </div>
+
+            <div>
+              {
+                uvIndex<3?(
+                  <div className="ProtectionNotRequired"><span>Sun Protection Not.Required </span></div>
+                )
+                :(
+                  <div className="ProtectionRequired">
+                    <span> Sun Protection Required </span>
+                    <div>
+                      <img src={hat} alt="" />
+                      <img src={shirt} alt="" />
+                      <img src={suncream} alt="" />
+                      <img src={sunglasses} alt="" />
+                      <img src={umbrella} alt="" />
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+
+
+            {/* <MyArcProgress
             progress={uvIndex / 12}
             currentText={uvIndex.toFixed(1)}
-          />
-          <Typography>Temperature: {temp}</Typography>
-          <Typography>DT: {formatTime(dt)}</Typography>
-          <Typography>Sunrise: {formatTime(sunrise)}</Typography>
-          <Typography>Sunset: {formatTime(sunset)}</Typography>
-        </div>
+          /> */}
+            <Typography>Temperature: {temp}</Typography>
+            <Typography>DT: {formatTime(dt)}</Typography>
+            <Typography>Sunrise: {formatTime(sunrise)}</Typography>
+            <Typography>Sunset: {formatTime(sunset)}</Typography>
+          </div>
       )}
      </div>
     </div>

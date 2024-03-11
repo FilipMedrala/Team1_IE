@@ -44,8 +44,8 @@ const SunscreenDosageCalculator: React.FC = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div style={{ marginLeft: '20px' }}> {/* Added left margin */}
+      <form onSubmit={handleSubmit} style={{ lineHeight: '1.5' }}>
         <div>
           <label>
             Height in cm:
@@ -53,6 +53,7 @@ const SunscreenDosageCalculator: React.FC = () => {
               type="number"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
+              style={{ display: 'block', margin: '20px 0' }} // Increased spacing
             />
           </label>
         </div>
@@ -63,20 +64,27 @@ const SunscreenDosageCalculator: React.FC = () => {
               type="number"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
+              style={{ display: 'block', margin: '20px 0' }} // Increased spacing
             />
           </label>
         </div>
         <div>
           <label>
             Gender:
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              style={{ display: 'block', margin: '20px 0' }} // Consistent spacing
+            >
               <option value="">Select...</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
           </label>
         </div>
-        <button type="submit">Calculate</button>
+        <button type="submit" style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold' }}>
+          Calculate
+        </button>
       </form>
       {dosageGrams !== null && (
         <p>Total gram of Sunscreen to Apply for your Height and Weight: {dosageGrams} gm</p>
@@ -86,6 +94,7 @@ const SunscreenDosageCalculator: React.FC = () => {
       )}
     </div>
   );
+  
 };
 
 export function Info() {
