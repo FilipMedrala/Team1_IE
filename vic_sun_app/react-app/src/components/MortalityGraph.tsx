@@ -25,7 +25,7 @@ const MortalityGraph: React.FC = () => {
 
   return (
     <div className="MortalityGraph">
-      <Typography variant="h4" gutterBottom className="graph-title">Cancer Incidence from 1983 to 2023</Typography>
+      <Typography variant="h4" gutterBottom className="graph-title">Cancer Incidence from 1971 to 2023</Typography>
       <select onChange={handleAgeCategoryChange}>
         <option value="Select All Age Categories">Select All Age Categories</option>
         {ageCategories.map(category => (

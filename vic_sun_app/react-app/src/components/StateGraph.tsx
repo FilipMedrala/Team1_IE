@@ -28,7 +28,7 @@ const AreaChartComponent: React.FC = () => {
 
   return (
     <div className="AreaChartComponent">
-      <Typography variant="h4" gutterBottom className="chart-title">Cancer Incidence by State or Territory</Typography>
+      <Typography variant="h4" gutterBottom className="chart-title">Cancer Incidence & Mortality by State/Territory</Typography>
       <select onChange={handleStateChange}>
         <option value="All">Select All States</option>
         {states.map(state => (
