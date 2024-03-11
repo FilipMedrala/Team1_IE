@@ -1,0 +1,9 @@
+.ComparisonPage {
+    display: flex;
+  }
+  
+  .graph-container {
+    flex: 1;
+    margin: 10px;
+  }
+  

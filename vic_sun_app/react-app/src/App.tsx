@@ -23,6 +23,7 @@ import {
 import MyArcProgress from './Arc';
 import {Info} from './Info';
 import './App.css'; // Make sure to include the CSS file
+import Thirdpage from './Third';
 
 interface WeatherData {
   current?: {
@@ -133,6 +134,8 @@ function App() {
           <NavLink to="/">Home</NavLink> 
           <span>| </span>
           <NavLink to="/info">Info</NavLink>
+          <span>| </span>
+          <NavLink to="/thirdpage">UV Data Analysis</NavLink>
           <Routes>
 
           </Routes>
@@ -144,6 +147,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/info" element={<Info />} />
+            <Route path="/thirdpage" element={<Thirdpage/>} />
           </Routes>
         </Grid>
       </Grid>
