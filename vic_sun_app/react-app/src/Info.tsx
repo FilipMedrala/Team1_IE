@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import hat from './assets/hat.png'
 import map from './assets/map.png'
@@ -5,8 +6,89 @@ import shirt from './assets/shirt.png'
 import suncream from './assets/suncream.png'
 import sunglasses from './assets/sunglasses.png'
 import umbrella from './assets/umbrella.png'
+interface SurfBodProps {
+  heightCm: number;
+  weightKg: number;
+  gender: string;
+}
 
-function Info() {
+const calculateBodySurfaceArea = ({ heightCm, weightKg, gender }: SurfBodProps): number => {
+  let bodySurfaceArea = 0.007184 * Math.pow(heightCm, 0.725) * Math.pow(weightKg, 0.425);
+  if (gender === 'female') {
+    bodySurfaceArea *= 0.84;
+  }
+  return bodySurfaceArea * 10000; // Convert to cm^2
+};
+
+const SunscreenDosageCalculator: React.FC = () => {
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [gender, setGender] = useState('');
+  const [dosageGrams, setDosageGrams] = useState<number | null>(null);
+  const [dosageTeaspoons, setDosageTeaspoons] = useState<number | null>(null);
+
+  const totalAreaToCoverPct = 8.26 + 5.7 + 16.7;
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const surfaceArea = calculateBodySurfaceArea({
+      heightCm: parseFloat(height),
+      weightKg: parseFloat(weight),
+      gender,
+    });
+    const dosageGm = Math.ceil((2 / 1000) * surfaceArea * Math.round(totalAreaToCoverPct / 100));
+    const dosageTsp = Math.ceil(dosageGm / 4.2);
+
+    setDosageGrams(dosageGm);
+    setDosageTeaspoons(dosageTsp);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Height in cm:
+            <input
+              type="number"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Weight in kg:
+            <input
+              type="number"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Gender:
+            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+              <option value="">Select...</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Calculate</button>
+      </form>
+      {dosageGrams !== null && (
+        <p>Total gram of Sunscreen to Apply for your Height and Weight: {dosageGrams} gm</p>
+      )}
+      {dosageTeaspoons !== null && (
+        <p>Total teaspoon of Sunscreen to Apply for your Height and Weight: {dosageTeaspoons} tsp</p>
+      )}
+    </div>
+  );
+};
+
+export function Info() {
 
   return (
     <>
@@ -97,12 +179,12 @@ During the sun protection times, protect skin and eyes by using covering clothin
           <h4 className='text-start'>Slide on sunglasses</h4>
           <p className='text-start'>Choose a close-fitting, wrap-around style of sunglasses.</p>
         </div>
-
+        
       </div>
       
     </div>
+    <SunscreenDosageCalculator />
     </>
   )
 }
 
-export default Info

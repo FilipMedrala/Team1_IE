@@ -21,7 +21,7 @@ import {
   // BottomNavigationAction,
 } from '@mui/material';
 import MyArcProgress from './Arc';
-import Info from './Info';
+import {Info} from './Info';
 import './App.css'; // Make sure to include the CSS file
 
 interface WeatherData {
