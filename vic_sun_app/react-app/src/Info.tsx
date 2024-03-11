@@ -36,8 +36,9 @@ const SunscreenDosageCalculator: React.FC = () => {
       weightKg: parseFloat(weight),
       gender,
     });
-    const dosageGm = Math.ceil((2 / 1000) * surfaceArea * Math.round(totalAreaToCoverPct / 100));
+    const dosageGm = Math.ceil((2 / 1000) * surfaceArea * (totalAreaToCoverPct / 100));
     const dosageTsp = Math.ceil(dosageGm / 4.2);
+
 
     setDosageGrams(dosageGm);
     setDosageTeaspoons(dosageTsp);
@@ -188,6 +189,11 @@ During the sun protection times, protect skin and eyes by using covering clothin
           <h4 className='text-start'>Slide on sunglasses</h4>
           <p className='text-start'>Choose a close-fitting, wrap-around style of sunglasses.</p>
         </div>
+
+        <div className='row'>
+        <h2 className='text-start p-3'>Calculate your sunscreen usagenpm: </h2>
+        <img src={map} alt="" />
+      </div>
         
       </div>
       
