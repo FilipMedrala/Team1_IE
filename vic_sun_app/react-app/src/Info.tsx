@@ -191,8 +191,7 @@ During the sun protection times, protect skin and eyes by using covering clothin
         </div>
 
         <div className='row'>
-        <h2 className='text-start p-3'>Calculate your sunscreen usagenpm: </h2>
-        <img src={map} alt="" />
+        <h2 className='text-start p-3'>Calculate your sunscreen usage: </h2>
       </div>
         
       </div>
