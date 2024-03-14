@@ -6,6 +6,7 @@
   /* height: 100vh; */
 
 }
+
 .Conatiner{
   padding: 0 20px;
 }
@@ -146,4 +147,14 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+#main_container{
+  width: 60%;
+  height: 100vh;
+  margin: 0 auto;
+  background-image: url('./assets/background.jpg'); 
+  background-size: cover; 
+  background-position: center;
+}
+
 

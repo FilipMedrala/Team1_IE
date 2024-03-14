@@ -60,7 +60,7 @@ function Home() {
   const fetchData = async () => {
     try {
       const response = await axios.get<WeatherData>(
-        `http://localhost:8080/api/weather/${location}`
+        `/api/weather/${location}`
       );
       setWeatherData(response.data);
       setError(null);
@@ -140,6 +140,7 @@ function Home() {
          Search
         </Button>
       </div>
+    
      <div className="bottom">
      {error && <Typography className="error">{error}</Typography>}
       {uvIndex !== undefined && (
@@ -159,7 +160,7 @@ function Home() {
             <div>
               {
                 uvIndex<3?(
-                  <div className="ProtectionNotRequired"><span>Sun Protection Not.Required </span></div>
+                  <div className="ProtectionNotRequired"><span>Sun Protection Not Required </span></div>
                 )
                 :(
                   <div className="ProtectionRequired">
@@ -175,12 +176,6 @@ function Home() {
                 )
               }
             </div>
-
-
-            {/* <MyArcProgress
-            progress={uvIndex / 12}
-            currentText={uvIndex.toFixed(1)}
-          /> */}
             <Typography>Temperature: {temp}</Typography>
             <Typography>DT: {formatTime(dt)}</Typography>
             <Typography>Sunrise: {formatTime(sunrise)}</Typography>
@@ -194,52 +189,34 @@ function Home() {
 
 function App() {
   return (
-    <Router>
-      {/* <Container className="container"> */}
-      {/* <Paper  className="paper" > */}
-      {/* <Typography  sx={{ color: 'orange' }}> */}
-      <div className="headers">
-        <div className="logo">
-          <img src={sun} alt="" />  SunSafeFamilies
-        </div>
-        <div className="tabs">
-          <NavLink to="/">Home</NavLink> 
-          <span>| </span>
-          <NavLink to="/info">Info</NavLink>
-          <span>| </span>
-          <NavLink to="/thirdpage">UV Data Analysis</NavLink>
-          <Routes>
+    <div id="main_container">
+      <Router>
+        <div className="headers">
+          <div className="logo">
+            <img src={sun} alt="" />  SunSafeFamilies
+          </div>
+          <div className="tabs">
+            <NavLink to="/">Home</NavLink> 
+            <span>| </span>
+            <NavLink to="/info">Info</NavLink>
+            <span>| </span>
+            <NavLink to="/thirdpage">UV Data Analysis</NavLink>
+            <Routes>
 
-          </Routes>
+            </Routes>
+          </div>
         </div>
-      </div>
-      {/* </Typography> */}
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/info" element={<Info />} />
-            <Route path="/thirdpage" element={<Thirdpage/>} />
-          </Routes>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/info" element={<Info />} />
+              <Route path="/thirdpage" element={<Thirdpage/>} />
+            </Routes>
+          </Grid>
         </Grid>
-      </Grid>
-      {/* </Paper> */}
-
-      {/* <BottomNavigation
-        showLabels
-        sx={{
-          backgroundColor: 'orange',
-          position: 'sticky',
-          bottom: 0,
-          width: '100%',
-          minHeight: '70px',
-        }}
-      >
-        <BottomNavigationAction component={Link} to="/" label="Home" sx={{ color: 'white', width: '50%' }} />
-        <BottomNavigationAction component={Link} to="/info" label="Info" sx={{ color: 'white', width: '50%' }} />
-      </BottomNavigation> */}
-      {/* </Container> */}
-    </Router>
+      </Router>
+    </div>
   );
 }
 
