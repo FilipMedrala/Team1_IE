@@ -51,6 +51,7 @@ const MortalityGraph: React.FC = () => {
             <Line key={index} type="monotone" dataKey="Count" name={category} data={filteredData.filter(item => item["Age Category"] === category)} stroke={colors[index % colors.length]} />
           ))}
         </LineChart>
+        
       </ResponsiveContainer>
     </div>
   );

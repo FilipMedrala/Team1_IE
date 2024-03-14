@@ -10,7 +10,9 @@ const ComparisonPage: React.FC = () => {
       <div className="graph-container">
         <div className="comparison-graphs">
           <MortalityGraph />
+          <div>文字放这里</div>
           <IncidenceGraph />
+          <div>文字放这里</div>
         </div>
       </div>
       <div className="graph-container">

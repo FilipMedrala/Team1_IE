@@ -117,10 +117,11 @@ function Home() {
   }
 
   return (
-    <div>
+    <div className="contents">
+      <div className="searchWords">
+      Know your location's UV level:
+      </div>
       <div className="input-container">
-
-        
         <div className="search">
         <TextField
           label="Search"
@@ -206,7 +207,8 @@ function App() {
             </Routes>
           </div>
         </div>
-        <Grid container spacing={2}>
+       <div >
+       <Grid container spacing={2}>
           <Grid item xs={12}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -215,6 +217,7 @@ function App() {
             </Routes>
           </Grid>
         </Grid>
+       </div>
       </Router>
     </div>
   );
