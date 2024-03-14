@@ -29,7 +29,7 @@ import {
 import {Info} from './Info';
 import './App.css'; // Make sure to include the CSS file
 import ProgressBar from './Progress';
-import Thirdpage from './Third';
+import CancerAnalysis from './Third';
 
 interface WeatherData {
   current?: {
@@ -201,7 +201,7 @@ function App() {
             <span>| </span>
             <NavLink to="/info">Info</NavLink>
             <span>| </span>
-            <NavLink to="/thirdpage">UV Data Analysis</NavLink>
+            <NavLink to="/thirdpage">Cancer Data Analysis</NavLink>
             <Routes>
 
             </Routes>
@@ -213,7 +213,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/info" element={<Info />} />
-              <Route path="/thirdpage" element={<Thirdpage/>} />
+              <Route path="/thirdpage" element={<CancerAnalysis />} />
             </Routes>
           </Grid>
         </Grid>
